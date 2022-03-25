@@ -15,7 +15,7 @@ class hanoi {
         }
 
         void write(int disc_num, char peg1, char peg2) {
-            output_file << disc_num << " " << peg1 << " " << peg2 << "\n";
+            output_file << disc_num << " " << peg1 << " -> " << peg2 << "\n";
         }
 
         void close_file() { output_file.close(); }
@@ -25,13 +25,13 @@ class hanoi {
 
             if (n == 1) {
                 write(n, pegs[start-1], pegs[end-1]);
-                //printf("%d %c %c \n", n, pegs[start-1], pegs[end-1]);
+                //printf("%d %c -> %c \n", n, pegs[start-1], pegs[end-1]);
             }
             else {
                 int other = 6 - (start + end);
                 hanoi3(n-1, start, other);
                 write(n, pegs[start-1], pegs[end-1]);
-                //printf("%d %c %c \n", n, pegs[start-1], pegs[end-1]);
+                //printf("%d %c -> %c \n", n, pegs[start-1], pegs[end-1]);
                 hanoi3(n-1, other, end);
             }
         }
@@ -44,7 +44,7 @@ class hanoi {
             }
             else if (n == 1) {
                 write(n, pegs[from-1], pegs[to-1]);
-                //printf("%d %c %c \n", n, pegs[from-1], pegs[to-1]);
+                //printf("%d %c -> %c \n", n, pegs[from-1], pegs[to-1]);
                 return;
             }
             else {
@@ -52,9 +52,9 @@ class hanoi {
                 write(n - 1, pegs[from-1], pegs[a2-1]);
                 write(n, pegs[from-1], pegs[to-1]);
                 write(n - 1, pegs[a2-1], pegs[to-1]);
-                //printf("%d %c %c \n", n - 1, pegs[from-1], pegs[a2-1]);
-                //printf("%d %c %c \n", n, pegs[from-1], pegs[to-1]);
-                //printf("%d %c %c \n", n - 1, pegs[a2-1], pegs[to-1]);
+                //printf("%d %c -> %c \n", n - 1, pegs[from-1], pegs[a2-1]);
+                //printf("%d %c -> %c \n", n, pegs[from-1], pegs[to-1]);
+                //printf("%d %c -> %c \n", n - 1, pegs[a2-1], pegs[to-1]);
                 hanoi4(n - 2, a1, to, from, a2);
             }
         }
@@ -66,16 +66,16 @@ class hanoi {
                 return;
             else if (n == 1) {
                 write(n, pegs[from-1], pegs[to-1]);
-                //printf("%d %c %c \n", n, pegs[from-1], pegs[to-1]);
+                //printf("%d %c -> %c \n", n, pegs[from-1], pegs[to-1]);
                 return;
             }
             else if (n==2) {
                 write(n-1, pegs[from-1], pegs[a1-1]);
                 write(n, pegs[from-1], pegs[to-1]);
                 write(n-1, pegs[a1-1], pegs[to-1]);
-                //printf("%d %c %c \n", n-1, pegs[from-1], pegs[a1-1]);
-                //printf("%d %c %c \n", n, pegs[from-1], pegs[to-1]);
-                //printf("%d %c %c \n", n-1, pegs[a1-1], pegs[to-1]);
+                //printf("%d %c -> %c \n", n-1, pegs[from-1], pegs[a1-1]);
+                //printf("%d %c -> %c \n", n, pegs[from-1], pegs[to-1]);
+                //printf("%d %c -> %c \n", n-1, pegs[a1-1], pegs[to-1]);
                 return;
             }
             else {
@@ -85,11 +85,11 @@ class hanoi {
                 write(n, pegs[from-1], pegs[to-1]);
                 write(n - 1, pegs[a2-1], pegs[to-1]);
                 write(n - 2, pegs[a3-1], pegs[to-1]);
-                //printf("%d %c %c \n", n - 2, pegs[from-1], pegs[a3-1]);
-                //printf("%d %c %c \n", n - 1, pegs[from-1], pegs[a2-1]);
-                //printf("%d %c %c \n", n, pegs[from-1], pegs[to-1]);
-                //printf("%d %c %c \n", n - 1, pegs[a2-1], pegs[to-1]);
-                //printf("%d %c %c \n", n - 2, pegs[a3-1], pegs[to-1]);
+                //printf("%d %c -> %c \n", n - 2, pegs[from-1], pegs[a3-1]);
+                //printf("%d %c -> %c \n", n - 1, pegs[from-1], pegs[a2-1]);
+                //printf("%d %c -> %c \n", n, pegs[from-1], pegs[to-1]);
+                //printf("%d %c -> %c \n", n - 1, pegs[a2-1], pegs[to-1]);
+                //printf("%d %c -> %c \n", n - 2, pegs[a3-1], pegs[to-1]);
                 hanoi5(n - 3, a1, to, from, a2, a3);
             }
         }
